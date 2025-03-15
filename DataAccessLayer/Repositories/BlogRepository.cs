@@ -10,39 +10,63 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class BlogRepository : IBlogDAL
+    public class BlogRepository : IGenericDAL<Blog> /*IBlogDAL*/
     {
-        public void AddCategory(Blog blog)
+        //public void AddCategory(Blog blog)
+        //{
+        //    using var c = new Context();
+        //    c.Add(blog);
+        //    c.SaveChanges();
+        //}
+
+        //public void DeleteCategory(Blog blog)
+        //{
+        //    using var c = new Context();
+        //    c.Remove(blog);
+        //    c.SaveChanges();
+        //}
+
+        //public Blog GetById(int id)
+        //{
+        //    using var c = new Context();
+        //    return c.Blogs.Find(id);
+        //}
+
+        //public List<Blog> ListAllCategory()
+        //{
+        //    using var c = new Context();
+        //    return c.Blogs.ToList();
+        //}
+
+        //public void UpdateCategory(Blog blog)
+        //{
+        //    using var c = new Context();
+        //    c.Update(blog);
+        //    c.SaveChanges();
+        //}
+        public void Delete(Blog t)
         {
-            using var c = new Context();
-            c.Add(blog);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public void DeleteCategory(Blog blog)
+        public Blog GetByID(int id)
         {
-            using var c = new Context();
-            c.Remove(blog);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public Blog GetById(int id)
+        public List<Blog> GetListAll()
         {
-            using var c = new Context();
-            return c.Blogs.Find(id);
+            throw new NotImplementedException();
         }
 
-        public List<Blog> ListAllCategory()
+        public void Insert(Blog t)
         {
-            using var c = new Context();
-            return c.Blogs.ToList();
+            throw new NotImplementedException();
         }
 
-        public void UpdateCategory(Blog blog)
+        public void Update(Blog t)
         {
-            using var c = new Context();
-            c.Update(blog);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
     }
 }

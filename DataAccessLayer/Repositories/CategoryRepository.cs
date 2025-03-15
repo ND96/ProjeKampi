@@ -9,35 +9,59 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class CategoryRepository : ICategoryDAL
+    public class CategoryRepository : IGenericDAL<Category>/*ICategoryDAL*/
     {
-        Context c = new Context();
-        public void AddCategory(Category category)
+        //Context c = new Context();
+        //public void AddCategory(Category category)
+        //{
+        //    c.Add(category);
+        //    c.SaveChanges();
+        //}
+
+        //public void DeleteCategory(Category category)
+        //{
+        //    c.Remove(category);
+        //    c.SaveChanges();
+        //}
+
+        //public Category GetById(int id)
+        //{
+        //    return c.Categories.Find(id);
+        //}
+
+        //public List<Category> ListAllCategory()
+        //{
+        //    return c.Categories.ToList();
+        //}
+
+        //public void UpdateCategory(Category category)
+        //{
+        //    c.Update(category);
+        //    c.SaveChanges();
+        //}
+        public void Delete(Category t)
         {
-            c.Add(category);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public void DeleteCategory(Category category)
+        public Category GetByID(int id)
         {
-            c.Remove(category);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public Category GetById(int id)
+        public List<Category> GetListAll()
         {
-            return c.Categories.Find(id);
+            throw new NotImplementedException();
         }
 
-        public List<Category> ListAllCategory()
+        public void Insert(Category t)
         {
-            return c.Categories.ToList();
+            throw new NotImplementedException();
         }
 
-        public void UpdateCategory(Category category)
+        public void Update(Category t)
         {
-            c.Update(category);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
     }
 }
