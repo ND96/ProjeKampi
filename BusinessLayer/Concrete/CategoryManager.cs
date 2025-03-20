@@ -13,37 +13,37 @@ namespace BusinessLayer.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        ICategoryDAL _categoryDAL;
+        ICategoryDAL _categoryDal;
 
         public CategoryManager(ICategoryDAL categoryDAL)
         {
-            _categoryDAL = categoryDAL;
+			_categoryDal = categoryDAL;
         }
 
         public void CategoryAdd(Category category)
         {
-            _categoryDAL.Insert(category);
+			_categoryDal.Insert(category);
 
         }
 
         public void CategoryRemove(Category category)
         {
-            _categoryDAL.Delete(category);
+			_categoryDal.Delete(category);
         }
 
         public void CategoryUpdate(Category category)
         {
-            _categoryDAL.Update(category);
+			_categoryDal.Update(category);
         }
 
         public Category GetById(int id)
         {
-            return _categoryDAL.GetByID(id);
+            return _categoryDal.GetByID(id);
         }
 
         public List<Category> GetList()
         {
-            return _categoryDAL.GetListAll();
+            return _categoryDal.GetListAll();
         }
     }
 }
