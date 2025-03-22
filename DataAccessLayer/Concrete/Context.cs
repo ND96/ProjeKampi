@@ -15,9 +15,9 @@ namespace DataAccessLayer.Concrete
         {
             //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;integrated security=true");
 
-            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
 
-            optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }

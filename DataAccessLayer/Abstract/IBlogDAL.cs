@@ -14,5 +14,6 @@ namespace DataAccessLayer.Abstract
         //void DeleteCategory(Blog blog);
         //void UpdateCategory(Blog blog);
         //Blog GetById(int id);
+        List<Blog> GetListWithCategory();
     }
 }

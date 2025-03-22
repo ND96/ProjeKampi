@@ -1,5 +1,5 @@
 ﻿using BusinessLayer.Concrete;
-using BusinessLayer.EntityFramework;
+using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers

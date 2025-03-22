@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EntityFramework\**" />
+    <EmbeddedResource Remove="EntityFramework\**" />
+    <None Remove="EntityFramework\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.EntityFramework
+namespace DataAccessLayer.EntityFramework
 {
-    public class EfCommentRepository:GenericRepository<Comment>,ICommentDAL
+    public class EfCommentRepository : GenericRepository<Comment>, ICommentDAL
     {
     }
 }

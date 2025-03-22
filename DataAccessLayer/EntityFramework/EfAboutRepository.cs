@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.EntityFramework
+namespace DataAccessLayer.EntityFramework
 {
-    public class EfCategoryRepository :GenericRepository<Category>,ICategoryDAL
+    public class EfAboutRepository : GenericRepository<About>, IAboutDAL
     {
-
     }
 }
