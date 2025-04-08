@@ -12,8 +12,8 @@ namespace CoreDemo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddSession();
+            
+            //builder.Services.AddSession();
 
             builder.Services.AddMvc(config =>
             {
@@ -49,7 +49,9 @@ namespace CoreDemo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-			app.UseSession();
+            app.UseAuthentication();
+
+			//app.UseSession();
 
 			app.UseRouting();
 
