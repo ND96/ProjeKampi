@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+
 namespace CoreDemo
 {
     public class Program
@@ -8,6 +11,14 @@ namespace CoreDemo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             var app = builder.Build();
 
