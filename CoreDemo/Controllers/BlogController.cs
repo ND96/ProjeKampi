@@ -18,10 +18,10 @@ namespace CoreDemo.Controllers
             return View(values);
         }
 
-        public IActionResult BlogReadAll (int id) 
+        public IActionResult BlogReadAll(int id)
         {
             ViewBag.ID = id;
-            var values =bm.GetBlogByID(id);
+            var values = bm.GetBlogByID(id);
             return View(values);
         }
 
@@ -41,10 +41,10 @@ namespace CoreDemo.Controllers
                                                        Text = x.CategoryName,
                                                        Value = x.CategoryID.ToString()
                                                    }).ToList();
-            ViewBag.cv=categoryvalues;
-            return View();  
+            ViewBag.cv = categoryvalues;
+            return View();
         }
-       
+
         [HttpPost]
         public IActionResult BlogAdd(Blog p)
         {
@@ -70,11 +70,25 @@ namespace CoreDemo.Controllers
             return View();
         }
 
-        public IActionResult DeleteBlog(int id )
+        public IActionResult DeleteBlog(int id)
         {
-            var blogvalue=bm.TGetById(id);
+            var blogvalue = bm.TGetById(id);
             bm.TDelete(blogvalue);
             return RedirectToAction("BlogListByWriter");
         }
+
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogvalue=bm.TGetById(id);
+            return View(blogvalue);
+        }
+
+        [HttpPost]
+        public IActionResult EditBlog(Blog p)
+        {
+            return RedirectToAction("BlogListByWriter");
+        }
+
     }
 }
