@@ -17,14 +17,24 @@
         <td>Sil</td>
         <td>Düzenle</td>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model)    
     {
         <tr>
             <th>@item.BlogID</th>
             <td>@item.BlogTitle</td>
-            <td>@item.BlogCreateDate</td>
-            <td>@item.CategoryID</td>
-            <td>@item.BlogStatus</td>
+            <td>@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</td>
+            <td>@item.Category.CategoryName</td>
+            @* <td>@item.BlogStatus</td> *@
+            <td>
+                @if (item.BlogStatus)
+                {
+                    <span class="badge badge-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge badge-secondary">Pasif</span>
+                }
+            </td>
             <td> <a href="#" class="btn btn-danger">Sil</a></td>
             <td> <a href="#" class="btn btn-warning">Düzenle</a></td>            
         </tr>
