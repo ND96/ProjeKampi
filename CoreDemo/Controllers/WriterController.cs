@@ -66,7 +66,7 @@ namespace CoreDemo.Controllers
 			if (results.IsValid)
 			{
 				wm.TUpdate(p);
-				return RedirectToAction ("Dashboard","Index");
+				return RedirectToAction ("Index","Dashboard");
 			}
 			else
 			{
