@@ -1,7 +1,11 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+//using System.ComponentModel.DataAnnotations;
+using FluentValidation.Results;
 
 namespace CoreDemo.Controllers
 {
@@ -47,10 +51,32 @@ namespace CoreDemo.Controllers
 		}
 
 		[AllowAnonymous]
+		[HttpGet]
 		public IActionResult WriterEditProfile()
 		{
 			var writervalues = wm.TGetById(1);
 			return View(writervalues);
 		}
-	}
+		[AllowAnonymous]
+		[HttpPost]
+		public IActionResult WriterEditProfile(Writer p)
+		{  
+			WriterValidator wl = new WriterValidator();
+			ValidationResult results = wl.Validate(p);
+			if (results.IsValid)
+			{
+				wm.TUpdate(p);
+				return RedirectToAction ("Dashboard","Index");
+			}
+			else
+			{
+				foreach(var item in results.Errors)
+				{
+					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+				}
+			}
+			return View();
+		}
+
+    }
 }
