@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Message2
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Mesaj Detay Sayfası</h1>
+<br />
+    @Html.Label("Mesaj ID")
+    @Html.TextBoxFor(x => x.Message2ID, new { @class = "form-control" })
+    <br />
+    @Html.Label("Mesaj Başlığı")
+    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+    <br />
+    @Html.Label("Mesaj İçeriği")
+    @Html.TextAreaFor(x => x.MessageDetails, new { @class = "form-control" })
+    <br />
+   
+    <button class="btn btn-success">Mesajlara Dön</button>
+ @*    //Değişmesini istemediğimiz yerleri gizli alıyoruz
+    @Html.HiddenFor(x => x.BlogID)
+    @Html.HiddenFor(x => x.BlogStatus)
+    @Html.HiddenFor(x => x.WriterID)
+    @Html.HiddenFor(x => x.BlogCreateDate) *@
+
+
