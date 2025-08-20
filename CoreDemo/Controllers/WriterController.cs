@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using FluentValidation.Results;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CoreDemo.Models;
+using DataAccessLayer.Concrete;
 
 namespace CoreDemo.Controllers
 {
@@ -16,9 +17,15 @@ namespace CoreDemo.Controllers
 	{
 
 		WriterManager wm = new WriterManager(new EfWriterRepository());
-		
+
+		[Authorize]
 		public IActionResult Index()
 		{
+			var usermail = User.Identity.Name;
+			ViewBag.usermail=usermail;
+			Context c = new Context();
+			var writerName = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
+			ViewBag.writerName = writerName;
 			return View();
 		}
 
