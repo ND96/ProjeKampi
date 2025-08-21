@@ -12,7 +12,7 @@ namespace CoreDemo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            
+
             //builder.Services.AddSession();
 
             builder.Services.AddMvc(config =>
@@ -23,10 +23,10 @@ namespace CoreDemo
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            builder.Services.AddMvc();  
+            builder.Services.AddMvc();
             builder.Services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(x=>
+                .AddCookie(x =>
                 {
                     x.LoginPath = "/Login/Index";
                 }
@@ -51,15 +51,28 @@ namespace CoreDemo
 
             app.UseAuthentication();
 
-			//app.UseSession();
+            //app.UseSession();
 
-			app.UseRouting();
+            app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.Run();
         }
