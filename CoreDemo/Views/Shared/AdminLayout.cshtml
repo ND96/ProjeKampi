@@ -17,6 +17,7 @@
     <link href="~/inspinia-gh-pages/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="~/inspinia-gh-pages/css/animate.css" rel="stylesheet">
     <link href="~/inspinia-gh-pages/css/style.css" rel="stylesheet">
+   
 </head>
 
 <body>
@@ -177,27 +178,26 @@
         </div>
     </div>
 
-
-
+ 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/popper.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/bootstrap.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/peity/jquery.peity.min.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/inspinia.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/pace/pace.min.js"></script>
 
     <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/iCheck/icheck.min.js"></script>
 
     <!-- Peity -->
-    <script src="js/demo/peity-demo.js"></script>
+    <script src="~/inspinia-gh-pages/js/demo/peity-demo.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -207,6 +207,7 @@
             });
         });
     </script>
+    @await RenderSectionAsync("scripts")    
 
 </body>
 
