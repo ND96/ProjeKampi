@@ -28,6 +28,11 @@ namespace CoreDemo.Areas.Admin.Controllers
                 categoryname = "Spor",
                 categorycount = 25
             });
+            list.Add(new CategoryClass
+            {
+                categoryname = "Sinema",
+                categorycount = 5
+            });
             return Json(new {jsonlist=list});
         }
     }
