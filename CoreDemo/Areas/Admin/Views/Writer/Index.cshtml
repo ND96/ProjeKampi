@@ -21,12 +21,13 @@
     <input type="text" id="writerid" placeholder="Yazar ID değerini girin" class="form-control" />
 </div>
 
+
 @section scripts {
     <script>
 
         $("#btngetlist").click(function () {
             $.ajax({
-                contentType: "application.json",
+                contentType: "application/json",
                 dataType: "json",
                 type: "Get",
                 url: "/Admin/Writer/WriterList/",
@@ -43,17 +44,20 @@
             });
         });
 
-        $("#btngetbyid").click(xml => {
+        $("#btngetbyid").click(x => {
             let id = $("#writerid").val();
             $.ajax({
-                contentType: "application.json",
+                contentType: "application/json",
                 dataType: "json",
                 type: "get",
                 url: "/Admin/Writer/GetWriterByID/",
                 data: { writerid: id },
                 success: function (func) {
                     let w = jQuery.parseJSON(func);
-                    console.log(w);                  
+                    console.log(w);
+                    
+                    let getvalue = `<table class=table table-bordered <tr> <th>Yazar ID</th> <th>Yazar Adı</th> </tr> <tr> <td>${w.Id}</td> <td>${w.Name}</td></tr></table>`;
+                    $("#writerget").html(getvalue);
                 }
             });
             
