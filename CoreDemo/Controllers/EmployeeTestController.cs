@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -32,7 +33,46 @@ namespace CoreDemo.Controllers
             {
                 return RedirectToAction("Index");
             }
+            return View(p);            
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:7036/api/Default/id?id=" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            { 
+                var jsonEmployee=await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Class1>(jsonEmployee);
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditEmployee (Class1 p)
+        {
+            var httpClient = new HttpClient();
+            var jsonEmployee = JsonConvert.SerializeObject(p);
+            var content = new StringContent(jsonEmployee, Encoding.UTF8, "application/json");
+            var responseMessage=await httpClient.PutAsync("https://localhost:7036/api/Default", content);
+            if (responseMessage.IsSuccessStatusCode) 
+            {
+                return RedirectToAction("Index");
+            }
             return View(p);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmployee(int id )
+        {
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync("https://localhost:7036/api/Default/id?id=" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
     public class Class1
