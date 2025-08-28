@@ -207,7 +207,8 @@
             });
         });
     </script>
-    @await RenderSectionAsync("scripts")    
+    @* @await RenderSectionAsync("scripts")    *@ 
+    @RenderSection("scripts", required: false)
 
 </body>
 
