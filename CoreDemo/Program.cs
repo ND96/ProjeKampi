@@ -1,6 +1,11 @@
+using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDemo
 {
@@ -9,6 +14,19 @@ namespace CoreDemo
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<Context>();
+            //        builder.Services.AddDbContext<Context>(options =>
+            //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Identity konfigürasyonu
+            builder.Services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<Context>() // DbContext'ini burada tanýmlamalýsýn
+            .AddDefaultTokenProviders();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -73,6 +91,8 @@ namespace CoreDemo
                   pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
+
+
 
             app.Run();
         }
