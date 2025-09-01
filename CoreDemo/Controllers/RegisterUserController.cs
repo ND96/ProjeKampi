@@ -10,13 +10,13 @@ namespace CoreDemo.Controllers
     public class RegisterUserController : Controller
     {
         private readonly UserManager<AppUser>_userManager;
-        [HttpPost]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Index(UserSignUpModel p)
         {
             if (ModelState.IsValid)
