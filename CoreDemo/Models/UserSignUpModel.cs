@@ -9,15 +9,15 @@ namespace CoreDemo.Models
         public string NameSurname { get; set; }
         
         [Display(Name = "Şifre")]
-        [Required(ErrorMessage = "Lütfen Şifre Giriniz!")]
+        [Required(ErrorMessage = "Lütfen Şifre Giriniz!"), DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Display(Name = "Şifre Tekrar")]
-        [Compare("Password",ErrorMessage="Şifreler Uyuşmuyor!")]
+        [Required, DataType(DataType.Password), Compare("Password", ErrorMessage = "Şifreler eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Mail Adresi")]
-        [Required(ErrorMessage = "Lütfen Mail Giriniz!")]
+        [Required(ErrorMessage = "Lütfen Mail Giriniz!"), EmailAddress]
         public string Mail { get; set; }
 
         [Display(Name = "Kullanıcı Adı")]
