@@ -23,7 +23,7 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(UserSignUpModel p)
+        public async Task<IActionResult> Index(UserSignUpViewModel p)
         {
             if (ModelState.IsValid)
             {

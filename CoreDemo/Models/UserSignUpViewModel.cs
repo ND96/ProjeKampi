@@ -2,7 +2,7 @@
 
 namespace CoreDemo.Models
 {
-    public class UserSignUpModel
+    public class UserSignUpViewModel
     {
         [Display(Name ="Ad Soyad")]
         [Required(ErrorMessage="Lütfen İsim Soyisim Giriniz!")]
