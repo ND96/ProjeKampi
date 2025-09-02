@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace DataAccessLayer.Concrete
 {
@@ -43,6 +44,14 @@ namespace DataAccessLayer.Concrete
                .HasForeignKey(z => z.ReceiverID)
                .OnDelete(DeleteBehavior.ClientSetNull);
 
+            //Deneme
+            //modelBuilder.Entity<Comment>()
+            //   .ToTable("Comments", tb =>
+            //   {
+            //       tb.HasTrigger("AddScoreInComment"); // Trigger ismini yaz
+            //   });
+            //
+
             base.OnModelCreating(modelBuilder);
 
             //HomeMatches => WriterSender
@@ -50,7 +59,8 @@ namespace DataAccessLayer.Concrete
 
             //HomeTeam => SenderUser
             //AwayTeam ==> ReceiverUser
-        }
+        }        
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }

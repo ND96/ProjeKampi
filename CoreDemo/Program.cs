@@ -62,6 +62,9 @@ namespace CoreDemo
 
             //app.UseStatusCodePages();
 
+
+
+
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 
             app.UseHttpsRedirection();
