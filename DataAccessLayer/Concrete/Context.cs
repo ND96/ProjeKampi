@@ -45,11 +45,11 @@ namespace DataAccessLayer.Concrete
                .OnDelete(DeleteBehavior.ClientSetNull);
 
             //Deneme
-            //modelBuilder.Entity<Comment>()
-            //   .ToTable("Comments", tb =>
-            //   {
-            //       tb.HasTrigger("AddScoreInComment"); // Trigger ismini yaz
-            //   });
+            modelBuilder.Entity<Comment>()
+               .ToTable("Comments", tb =>
+               {
+                   tb.HasTrigger("AddScoreInComment"); // Trigger ismini yaz
+               });
             //
 
             base.OnModelCreating(modelBuilder);
