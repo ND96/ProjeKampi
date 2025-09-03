@@ -89,25 +89,10 @@ namespace CoreDemo.Controllers
             values.NameSurname = model.namesurname;
             values.ImageUrl = model.imageurl;
             values.Email = model.imageurl;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.password);
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
-            //userManager.TUpdate(p);
-            //return RedirectToAction("Index","Dashboard");
-            //WriterValidator wl = new WriterValidator();
-            //ValidationResult results = wl.Validate(p);
-            //if (results.IsValid)
-            //{
-            //    wm.TUpdate(p);
-            //    return RedirectToAction("Index", "Dashboard");
-            //}
-            //else
-            //{
-            //    foreach (var item in results.Errors)
-            //    {
-            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-            //    }
-            //}
-            //return View();
+           
         }
 
         [AllowAnonymous]
