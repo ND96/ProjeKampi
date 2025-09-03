@@ -19,7 +19,11 @@ namespace DataAccessLayer.Concrete
 
             //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
 
-            optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
+            //Deneme
+            optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true",
+        sqlOptions => sqlOptions.UseCompatibilityLevel(160) // SQL Server 2014 uyum modu
+    );
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +53,11 @@ namespace DataAccessLayer.Concrete
                .ToTable("Comments", tb =>
                {
                    tb.HasTrigger("AddScoreInComment"); // Trigger ismini yaz
+               });
+            modelBuilder.Entity<Blog>()
+               .ToTable("Blogs", tb =>
+               {
+                   tb.HasTrigger("AddBlogInRaytingTable1"); // Trigger ismini yaz
                });
             //
 
