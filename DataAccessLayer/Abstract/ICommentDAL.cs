@@ -9,6 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICommentDAL :IGenericDAL<Comment>
     {
-
+        List<Comment> GetListWithBlog();
     }
 }
