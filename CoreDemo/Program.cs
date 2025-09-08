@@ -46,6 +46,8 @@ namespace CoreDemo
                 CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
+                    x.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+                    x.AccessDeniedPath = new PathString("/Login/AccessDenied/");
                     x.LoginPath = "/Login/Index";
                 }
                 );
