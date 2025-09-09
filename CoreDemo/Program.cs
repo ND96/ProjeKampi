@@ -42,15 +42,22 @@ namespace CoreDemo
             });
 
             builder.Services.AddMvc();
-            builder.Services.AddAuthentication(
-                CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(x =>
-                {
-                    x.ExpireTimeSpan = TimeSpan.FromMinutes(15);
-                    x.AccessDeniedPath = new PathString("/Login/AccessDenied/");
-                    x.LoginPath = "/Login/Index";
-                }
-                );
+            //builder.Services.AddAuthentication(
+            //    CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(x =>
+            //    {
+            //        x.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+            //        x.AccessDeniedPath = new PathString("/Login/AccessDenied/");
+            //        x.LoginPath = "/Login/Index";
+            //    }
+            //    );
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login/Index";
+                options.AccessDeniedPath = "/Login/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+            });
 
             var app = builder.Build();
 
