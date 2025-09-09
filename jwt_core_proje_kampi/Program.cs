@@ -24,12 +24,15 @@ namespace jwt_core_proje_kampi
                 x.RequireHttpsMetadata = false;
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = "http://localhost",
                     ValidAudience = "http://localhost",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aspnetcoreprojekampi")),
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime=true,
-                    ClockSkew=TimeSpan.Zero
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aspnetcoreprojekampi_for_testing_purposes_123")),
+                                    
+                    ClockSkew=TimeSpan.Zero                    
                 };
             });
 
@@ -41,7 +44,7 @@ namespace jwt_core_proje_kampi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseAuthentication();    
             app.UseAuthorization();
 
 
