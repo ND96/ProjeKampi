@@ -1,11 +1,21 @@
-﻿<nav class="navbar-default navbar-static-side" role="navigation">
+﻿@using EntityLayer.Concrete
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+
+@*  @inject SignInManager<AppUser> SignInManager *@
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User); //Partiala User çekme 
+}
+
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <img alt="image" class="rounded-circle" src="~/inspinia-gh-pages/img/profile_small.jpg" />
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="block m-t-xs font-bold">Nihat Demirezen</span>
+                        <span class="block m-t-xs font-bold"> @currentUser.NameSurname </span>
                         <span class="text-muted text-xs block">Core 5.0 Admin Paneli <b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -21,7 +31,10 @@
                 </div>
             </li>
             <li>
-                <a href="/Admin/Widget/Index/"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span>  </a>
+                <a href="/Dashboard/Index/"><i class="fa fa-diamond"></i> <span class="nav-label">Dashboarda Dön</span>  </a>
+            </li>
+            <li>
+                <a href="/Admin/Widget/Index/"><i class="fa fa-th-large"></i> <span class="nav-label">Widget</span>  </a>
             </li>      
             <li>
                 <a href="/Admin/Chart/Index/"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Grafikler</span>  </a>
@@ -35,9 +48,7 @@
                     <li><a href="/Admin/AdminMessage/ComposeMessage/">Yeni Mesaj Oluştur</a></li>                    
                 </ul>
             </li>
-            <li>
-                <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrikler</span>  </a>
-            </li>
+
             <li>
                 <a href="/Admin/Category/Index/"><i class="fa fa-group"></i> <span class="nav-label">Kategoriler</span>  </a>
             </li>
@@ -50,21 +61,11 @@
             <li>
                 <a href="/Admin/Writer/Index/"><i class="fa fa-user"></i> <span class="nav-label">Yazarlar</span>  </a>
             </li>
-            <li>
-                <a href="settings.html"><i class="fa fa-info"></i> <span class="nav-label">Ayarlar</span>  </a>
-            </li>
+          
             <li>
                 <a href="/Admin/AdminRole/Index/"><i class="fa fa-lock"></i> <span class="nav-label">Roller</span>  </a>
             </li>
-            <li>
-                <a href="notifications.html"><i class="fa fa-diamond"></i> <span class="nav-label">Bildirimler</span>  </a>
-            </li>
-            <li>
-                <a href="contact.html"><i class="fa fa-phone"></i> <span class="nav-label">İletişim</span>  </a>
-            </li>
-            <li>
-                <a href="aboutus.html"><i class="fa fa-address-book"></i> <span class="nav-label">Hakkımızda</span>  </a>
-            </li>
+        
             <li>
                 <a href="/Admin/Blog/ExportStaticExcelBlogList/"><i class="fa fa-flask"></i> <span class="nav-label">Statik Rapor</span></a>
             </li>    

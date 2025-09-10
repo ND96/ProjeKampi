@@ -18,8 +18,13 @@ namespace BusinessLayer.Concrete
         {
 			_categoryDal = categoryDAL;
         }
+        
+        public List<CategoryWithCountDto> GetCategoriesWithBlogCount()
+        {
+            return _categoryDal.GetCategoriesWithBlogCount();
+        }
 
-   
+
         public Category TGetById(int id)
         {
             return _categoryDal.GetByID(id);

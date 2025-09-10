@@ -1,6 +1,15 @@
 ﻿@{
     Layout = null;
 }
+@using EntityLayer.Concrete
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+
+@*  @inject SignInManager<AppUser> SignInManager *@
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User); //Partiala User çekme
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +61,7 @@
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">KullanıcıAdıÇekilecek</p>
+                                <p class="mb-1 text-black">@currentUser.NameSurname</p>
                             </div>
                         </a>
                         

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
 using System;
@@ -11,6 +12,17 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfCategoryRepository : GenericRepository<Category>, ICategoryDAL
     {
-
+        public List<CategoryWithCountDto> GetCategoriesWithBlogCount()
+        {
+            using var context = new Context();
+            return context.Categories
+                .Select(c => new CategoryWithCountDto
+                {
+                    CategoryId = c.CategoryID,
+                    CategoryName = c.CategoryName,
+                    BlogCount = context.Blogs.Count(b => b.CategoryID == c.CategoryID)
+                })
+                .ToList();
+        }
     }
 }

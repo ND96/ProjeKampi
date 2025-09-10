@@ -1,4 +1,14 @@
-﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+﻿@using EntityLayer.Concrete
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+
+@*  @inject SignInManager<AppUser> SignInManager *@
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User); //Partiala User çekme
+}
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
@@ -8,18 +18,31 @@
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">KullanıcıAdıÇekilecek</span>
+                    <span class="font-weight-bold mb-2">@currentUser.NameSurname</span>
                     <span class="text-secondary text-small">Core 5.0 Yazar Paneli</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Dashboard/Index/">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-home menu-icon"></i>
+            <a class="nav-link" href="/Blog/Index/">
+                <span class="menu-title">Blog Anasayfa</span>
+                <i class="mdi mdi-home menu-icon" ></i>
             </a>
-        </li>        
+        </li>              
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin/Widget/Index/">
+                <span class="menu-title">Admin Sayfası</span>
+                <i class="mdi mdi-shield-lock menu-icon" ></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Dashboard/Index/">
+                <span class="menu-title">Dashboard Anasayfa</span>
+                <i class="mdi mdi-monitor-dashboard menu-icon" ></i>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/Writer/WriterEditProfile/">
                 <span class="menu-title">Profilim</span>
@@ -50,15 +73,21 @@
                 <i class="mdi mdi-notification-clear-all menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
+@*         <li class="nav-item">
             <a class="nav-link" href="/Blog/Index/">
                 <span class="menu-title">Siteye Git</span>
                 <i class="mdi mdi-car menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="/Admin/Home/Index/">
+                <span class="menu-title">Admin Sayfasına Git</span>
+                <i class="mdi mdi-car menu-icon"></i>
+            </a>
+        </li> *@
+        <li class="nav-item">
             <a class="nav-link" href="/Writer/WriterEditProfile/">
-                <span class="menu-title">Ayarlar</span>
+                <span class="menu-title">Profil Ayarları</span>
                 <i class="mdi mdi-settings menu-icon"></i>
             </a>
         </li>

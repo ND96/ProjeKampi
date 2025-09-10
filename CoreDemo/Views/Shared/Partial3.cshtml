@@ -9,6 +9,8 @@
 					<a href="/About/Index/" class="btn btn-primary read-m">Devamını oku</a>
 				</div>
 			</div>
+
+			<!-- BlogLast3Post Invoke -->
 			<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
 
 				@await Component.InvokeAsync("BlogLast3Post")
@@ -17,7 +19,7 @@
 			<!-- subscribe -->
 			<div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
 				<h2>Mail Bültenine abone olun</h2>
-
+				<!-- SubscribeMail Partial -->
 				@await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
 
 				<!-- //subscribe -->
