@@ -1,4 +1,8 @@
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +34,11 @@ namespace CoreDemo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+
+            //Servisi DI Containera kaydetme 
+            builder.Services.AddScoped<ICategoryService, CategoryManager>();
+            builder.Services.AddScoped<ICategoryDAL, EfCategoryRepository> ();
 
             //builder.Services.AddSession();
 
