@@ -1,6 +1,7 @@
 ﻿using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -13,18 +14,51 @@ namespace DataAccessLayer.Concrete
 {
     public class Context : IdentityDbContext<AppUser, AppRole,int>
     {
+
+        public Context(DbContextOptions<Context> options)
+          : base(options)
+        {
+        }
+
+        // Eğer parametresiz constructor gerekiyorsa (opsiyonel)
+        public Context() { }
+
+
+        //publishte açılacak alan
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;integrated security=true");
+            if (!optionsBuilder.IsConfigured)
+            {
+                // ConfigurationBuilder ile hem local hem environment variable'dan alıyoruz
+                var config = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+                //localde çalışma yaparken burayı değiş publishte düzelt
+                var connectionString = "";//config.GetConnectionString("DefaultConnection");
 
-            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    // Fallback: Local default connection
+                    connectionString = "Server=.;Database=CoreBlogDb;Trusted_Connection=True;TrustServerCertificate=True";
+                }
 
-            //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
-            //Deneme
-            optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true",
-        sqlOptions => sqlOptions.UseCompatibilityLevel(160) // SQL Server 2014 uyum modu
-    );
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
+
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    {
+    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;integrated security=true");
+
+    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
+
+    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
+    //        //Deneme
+    //        optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true",
+    //    sqlOptions => sqlOptions.UseCompatibilityLevel(160) // SQL Server 2014 uyum modu
+    //);
+    //    }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Match>()

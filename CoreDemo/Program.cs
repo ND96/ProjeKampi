@@ -19,9 +19,10 @@ namespace CoreDemo
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<Context>();
-            //        builder.Services.AddDbContext<Context>(options =>
-            //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            //Publishte açýlmasý gerek satýr
+            builder.Services.AddDbContext<Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             // Identity konfigürasyonu
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
