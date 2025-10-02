@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace DataAccessLayer.Concrete
 
         // Eğer parametresiz constructor gerekiyorsa (opsiyonel)
         public Context() { }
-
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=nihatcoredemo.database.windows.net;Database=NihatCoreDemo; User Id=Nigod159;Password=Aa*123456;TrustServerCertificate=true");
+        //}
 
         //publishte açılacak alan
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,18 +51,18 @@ namespace DataAccessLayer.Concrete
             }
         }
 
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //    {
-    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;integrated security=true");
+        //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    {
+        //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;integrated security=true");
 
-    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
+        //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb;User Id=sa;Password=1234;TrustServerCertificate=true");
 
-    //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
-    //        //Deneme
-    //        optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true",
-    //    sqlOptions => sqlOptions.UseCompatibilityLevel(160) // SQL Server 2014 uyum modu
-    //);
-    //    }
+        //        //optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true");
+        //        //Deneme
+        //        optionsBuilder.UseSqlServer("Server=.;Database=CoreBlogDb; Trusted_Connection=True;TrustServerCertificate=true",
+        //    sqlOptions => sqlOptions.UseCompatibilityLevel(160) // SQL Server 2014 uyum modu
+        //);
+        //    }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Match>()
